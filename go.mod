@@ -5,9 +5,23 @@ go 1.20
 require github.com/gin-gonic/gin v1.9.1
 
 require (
+	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/gorilla/context v1.1.1 // indirect
+	github.com/gorilla/securecookie v1.1.1 // indirect
+	github.com/gorilla/sessions v1.2.1 // indirect
+	github.com/pquerna/cachecontrol v0.2.0 // indirect
+	golang.org/x/oauth2 v0.8.0 // indirect
+	google.golang.org/appengine v1.6.7 // indirect
+	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
+)
+
+require (
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
+	github.com/coreos/go-oidc v2.2.1+incompatible
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
+	github.com/gin-contrib/cors v1.4.0
+	github.com/gin-contrib/sessions v0.0.5
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
