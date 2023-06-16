@@ -1,11 +1,19 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: webapp-route
+  annotations:
+    openshift.io/host.generated: "true"
+  labels:
+    app: webapp
+  name: webapp-service
   namespace: poc
 spec:
+  host: webapp-service-poc.apps.vmw-sno5.lab.kubeapp.cloud
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
   to:
     kind: Service
     name: webapp-service
-  port:
-    targetPort: 8080
+    weight: 100
+  wildcardPolicy: None

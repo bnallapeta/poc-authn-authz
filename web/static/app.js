@@ -22,6 +22,7 @@ function makeRequest(apiPath) {
 
 function initiateOAuth2Flow(apiPath) {
   // Redirect the user to the start of a new OAuth2 flow
+  const origin = window.location.origin.replace(/^http:\/\//i, 'https://');
   const redirectUri = `${window.location.origin}/auth/start?next=${encodeURIComponent(apiPath)}`;
   window.location.href = redirectUri;
 }

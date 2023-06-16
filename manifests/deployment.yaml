@@ -23,7 +23,7 @@ spec:
       - name: webapp
         image: ghcr.io/bnallapeta/poc-authn-authz:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8443
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

@@ -28,7 +28,7 @@ COPY --from=builder /app/main .
 RUN chmod 755 main
 
 # Expose port for the application
-EXPOSE 8080
+EXPOSE 8443
 
 # Copy the web folder; required in order to render static files
 COPY web web

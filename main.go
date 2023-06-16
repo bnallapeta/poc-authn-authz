@@ -26,7 +26,7 @@ func main() {
 	// This is required as by default, browser disallows js on our page to make a cross-origin request
 	// thereby blocking the redirect call to keycloak
 	corsConfig := cors.DefaultConfig()
-	corsConfig.AllowOrigins = []string{"http://webapp-route-poc.apps.vmw-sno5.lab.kubeapp.cloud"}
+	corsConfig.AllowOrigins = []string{"https://webapp-service-poc.apps.vmw-sno5.lab.kubeapp.cloud"}
 	r.Use(cors.New(corsConfig))
 
 	// Use the session middleware
@@ -35,7 +35,7 @@ func main() {
 	oidcConfig := auth.NewOIDCConfig(
 		"poc-webapp",
 		"zNszZddURNUokEYIrT8d7mFr9cxacI1p",
-		"http://webapp-route-poc.apps.vmw-sno5.lab.kubeapp.cloud/auth/callback",
+		"https://webapp-service-poc.apps.vmw-sno5.lab.kubeapp.cloud/auth/callback",
 		"https://keycloak-default.apps.vmw-sno5.lab.kubeapp.cloud/realms/poc-realm",
 	)
 
@@ -49,9 +49,6 @@ func main() {
 	})
 
 	r.GET("/auth/start", func(c *gin.Context) {
-		// Enable CORS
-		auth.EnableCors(c)
-
 		// Get the path the user was trying to access
 		next := c.Request.URL.Query().Get("next")
 		if next == "" {
@@ -72,7 +69,6 @@ func main() {
 	r.GET("/auth/callback", func(c *gin.Context) {
 		// Handle callback from Keycloak
 		// Parse the authorization code from the request parameters
-		// http://webapp-route-poc.apps.vmw-sno5.lab.kubeapp.cloud/auth/callback?next=%2Fapi%2Fgetpods&state=4ZC4PBjUwMYI3IKs&session_state=cc9b44c8-aa66-42dc-add5-0f0054f8798d&code=a3e18706-cac5-4e35-a0b9-afe23fb9bd8c.cc9b44c8-aa66-42dc-add5-0f0054f8798d.b7abba06-1192-49d7-b2b8-ab29d87c2598
 
 		code := c.Request.URL.Query().Get("code")
 		if code == "" {
@@ -150,7 +146,7 @@ func main() {
 	routes.RegisterRoutes(r)
 
 	// Start the server
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(":8443", r); err != nil {
 		log.Fatalf("Failed to start the server: %v", err)
 	}
 }
